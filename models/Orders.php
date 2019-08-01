@@ -45,13 +45,13 @@ class Orders extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'customer_name' => 'Customer Name',
-            'customer_email' => 'Customer Email',
-            'customer_mobile' => 'Customer Mobile',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'customer_name' => Yii::t('app', 'Customer Name'),
+            'customer_email' => Yii::t('app', 'Customer Email'),
+            'customer_mobile' => Yii::t('app', 'Customer Mobile'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 }
