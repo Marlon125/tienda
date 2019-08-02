@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use PlaceToPay\SDKPSE\SDKPSE;
 
 class SiteController extends Controller
 {
@@ -61,7 +62,26 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $config = array(
+            "login" => "6dd490faf9cb87a9862245da41170ff2",
+            "tran_key" => "024h1IlD",
+            "cache" => array(
+                 "type" => "memcached",
+                 "memcached" => array(
+                    "host" => "localhost",
+                    "port" => 11211,
+               )
+                 
+            )
+        );
+    
+        $obj = new SDKPSE($config);
+
+        $bankList = $obj->getBankList();
+
+        echo $bankList;
+        // return $this->render('index');
     }
 
     /**

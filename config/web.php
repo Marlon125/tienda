@@ -18,7 +18,23 @@ $config = [
             'cookieValidationKey' => '4KyO2NBQvyitCesR65cUS9uqKPiygka1',
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            // 'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\MemCache',
+            'useMemcached' => true,
+            'serializer' => false,
+            'servers' => [
+                [
+                    'host' => 'localhost',
+                    'port' => 11211,
+                    'weight' => 60, 
+                ],
+            ],
+            'options' => [
+
+                '\Memcached::OPT_COMPRESSION' => false
+        
+            ],
+
         ],
         'user' => [
             'identityClass' => 'app\models\User',
