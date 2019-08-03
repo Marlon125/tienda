@@ -63,25 +63,21 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        $config = array(
-            "login" => "6dd490faf9cb87a9862245da41170ff2",
-            "tran_key" => "024h1IlD",
-            "cache" => array(
-                 "type" => "memcached",
-                 "memcached" => array(
-                    "host" => "localhost",
-                    "port" => 11211,
-               )
+        // $config = array(
+        //     "login" => "6dd490faf9cb87a9862245da41170ff2",
+        //     "tran_key" => "024h1IlD",
+        //     "cache" => array(
+        //          "type" => "apcu",
                  
-            )
-        );
+        //     )
+        // );
     
-        $obj = new SDKPSE($config);
+        // $obj = new SDKPSE($config);
 
-        $bankList = $obj->getBankList();
+        // $bankList = $obj->getBankList();
 
-        echo $bankList;
-        // return $this->render('index');
+        // echo $bankList;
+        return $this->render('index');
     }
 
     /**
