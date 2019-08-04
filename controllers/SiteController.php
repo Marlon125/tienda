@@ -65,21 +65,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
-        // $config = array(
-        //     "login" => "6dd490faf9cb87a9862245da41170ff2",
-        //     "tran_key" => "024h1IlD",
-        //     "cache" => array(
-        //          "type" => "apcu",
-                 
-        //     )
-        // );
-    
-        // $obj = new SDKPSE($config);
-
-        // $bankList = $obj->getBankList();
-
-        // echo $bankList;
         return $this->render('index');
     }
 
@@ -137,6 +122,28 @@ class SiteController extends Controller
          return $this->render('_form', [
              'model' => $model
          ]);
+     }
+
+     /**
+     * Create Pay a single Orders.
+     * @param integer $id
+     * @return mixed
+     */
+     function actionPay($id){
+        // $config = array(
+        //     "login" => "6dd490faf9cb87a9862245da41170ff2",
+        //     "tran_key" => "024h1IlD",
+        //     "cache" => array(
+        //          "type" => "apcu",
+                 
+        //     )
+        // );
+    
+        // $obj = new SDKPSE($config);
+
+        // $bankList = $obj->getBankList();
+
+        // echo $bankList;
      }
 
      /**
