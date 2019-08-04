@@ -11,6 +11,9 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use PlaceToPay\SDKPSE\SDKPSE;
 
+// declaracion de modelos
+use app\models\Orders;
+
 class SiteController extends Controller
 {
     /**
@@ -81,64 +84,58 @@ class SiteController extends Controller
     }
 
     /**
-     * Login action.
-     *
-     * @return Response|string
+     * Displays a single Orders.
+     * @param integer $id
+     * @return mixed
      */
-    public function actionLogin()
+    public function actionView($id)
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
+        return $this->render('view', [
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
+     * Creates a new Orders model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string
      */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+
+     public function actionCreate(){
+         $model = new Orders();
+
+         if ($model->load(Yii::$app->request->post())) {
+             $created_at = date('Y-m-d H:i:s');
+             $status = "CREATED";
+
+             $model->created_at = $created_at;
+             $model->status = $status;
+
+             $valid = $model->validate();
+
+             if($valid){
+                 $model->save();
+                 return $this->redirect(['view', 'id' => $model->id]);
+             }
+         }
+         return $this->render('_form', [
+             'model' => $model
+         ]);
+     }
+
+     /**
+     * Finds the Orders model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Orders the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+     protected function findModel($id)
+     {
+         if (($model = Orders::findOne($id)) !== null) {
+             return $model;
+         } else {
+             throw new NotFoundHttpException('The requested page does not exist.');
+         }
+     }
 }
