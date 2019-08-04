@@ -96,6 +96,21 @@ class SiteController extends Controller
     }
 
     /**
+     * Lists all Orders models.
+     * @return mixed
+     */
+    public function actionList()
+    {
+        $searchModel = new Orders();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('list', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Creates a new Orders model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string
@@ -103,6 +118,7 @@ class SiteController extends Controller
 
      public function actionCreate(){
          $model = new Orders();
+         $model->scenario = 'create';
 
          if ($model->load(Yii::$app->request->post())) {
              $created_at = date('Y-m-d H:i:s');

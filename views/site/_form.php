@@ -1,7 +1,7 @@
 <?php
     use yii\widgets\ActiveForm;
     use yii\helpers\Html;
-    $this->title = Yii::t('app', 'Create New Cliente');
+    $this->title = Yii::t('app', 'Create New Order');
 ?>
 
 <div id="create-client">

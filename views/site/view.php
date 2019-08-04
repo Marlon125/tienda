@@ -12,13 +12,14 @@ $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="orders-view">
- 
+
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-    <?= Html::a('Create', ['create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Create', ['create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Pay {icon}', ['icon' => '<i class="glyphicon glyphicon-credit-card"></i>']), ['create'], ['class' => 'btn btn-success', 'style' => $model->status == 'PAYED' ? "display:none" : '']) ?>
     </p>
- 
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -29,5 +30,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'status'
         ],
     ]) ?>
- 
+
 </div>
