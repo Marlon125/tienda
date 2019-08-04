@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create', ['create'], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Pay {icon}', ['icon' => '<i class="glyphicon glyphicon-credit-card"></i>']), ['create'], ['class' => 'btn btn-success', 'style' => $model->status == 'PAYED' ? "display:none" : '']) ?>
+        <?= Html::a('Back to List', ['list'], ['class' => 'btn btn-warning']) ?>
     </p>
 
     <?= DetailView::widget([
