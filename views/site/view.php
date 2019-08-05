@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Pay {icon}', ['icon' => '<i class="glyphicon glyphicon-credit-card"></i>']), ['create'], ['class' => 'btn btn-success', 'style' => $model->status == 'PAYED' ? "display:none" : '']) ?>
+        <?= Html::a(Yii::t('app', 'Pay {icon}', ['icon' => '<i class="glyphicon glyphicon-credit-card"></i>']), ['pay', 'id' => $model->id], ['class' => 'btn btn-success', 'style' => $model->status == 'PAYED' ? "display:none" : '']) ?>
         <?= Html::a(Yii::t('app', 'Back to List'), ['list'], ['class' => 'btn btn-warning']) ?>
     </p>
 
